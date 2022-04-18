@@ -21,6 +21,9 @@ int main() {
     int Start_point = NULL;
     int Finish_point = NULL;
     int i, j;
+    int Numbers_first[MAX_NUMBER_OF_POINT];
+    int Numbers_second[MAX_NUMBER_OF_POINT];
+    int mass_all[MAX_NUMBER_OF_POINT];
     //int Numbers_first[MAX_NUMBER_OF_POINT];
     //int Numbers_second[MAX_NUMBER_OF_POINT];
     //for (i = 0; i < MAX_NUMBER_OF_POINT; i++)
@@ -37,7 +40,7 @@ int main() {
     }
 
     fprintf(f1, "digraph D{\n");
-    printf("Ââåäèòå ïåðâûé ãðàô â ôîðìàòå:         |\n ¹_ïåðâîé_âåðøèíû -> ¹_âòîðîé_âåðøèíû; |\n");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð³Ñ€Ð°Ñ„ Ð² Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ðµ:         |\n â„–_Ð¿ÐµÑ€Ð²Ð¾Ð¹_Ð²ÐµÑ€ÑˆÐ¸Ð½Ñ‹ -> â„–_Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹_Ð²ÐµÑ€ÑˆÐ¸Ð½Ñ‹; |\n");
     printf("---------------------------------------|\n");
     while ((current = getchar()) != EOF)
         fputc(current, f1);
@@ -53,7 +56,7 @@ int main() {
     }
 
     fprintf(f2, "digraph D{\n");
-    printf("Ââåäèòå âòîðîé ãðàô â ôîðìàòå:         |\n ¹_ïåðâîé_âåðøèíû -> ¹_âòîðîé_âåðøèíû; |\n");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð³Ñ€Ð°Ñ„ Ð² Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ðµ:         |\n â„–_Ð¿ÐµÑ€Ð²Ð¾Ð¹_Ð²ÐµÑ€ÑˆÐ¸Ð½Ñ‹ -> â„–_Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹_Ð²ÐµÑ€ÑˆÐ¸Ð½Ñ‹; |\n");
     printf("---------------------------------------|\n");
     while ((current = getchar()) != EOF)
         fputc(current, f2);
@@ -68,20 +71,20 @@ int main() {
     system("start Graph2.bmp");
 
     //------------------------------------------------------------------------//
-    //f1 = fopen("Graph1.txt", "r");
-    //while ((current = fgetc(f1)) != EOF)
-    //{
-    //	if ((current == '1') || (current == '2') || (current == '3') || (current == '4') || (current == '5') || (current == '6') || (current == '7') || (current == '8') || (current == '9') || (current == '10'))
-    //		Numbers_first[current - '0'] = 1;
-    //}
-    //fclose(f1);
-    //f2 = fopen("Graph2.txt", "r");
-    //while ((current = fgetc(f2)) != EOF)
-    //{
-    //	if ((current == '1') || (current == '2') || (current == '3') || (current == '4') || (current == '5') || (current == '6') || (current == '7') || (current == '8') || (current == '9') || (current == '10'))
-    //		Numbers_second[current - '0'] = 1;
-    //}
-    //fclose(f2);
+    f1 = fopen("Graph1.txt", "r");
+    while ((current = fgetc(f1)) != EOF)
+    {
+    	if ((current == '1') || (current == '2') || (current == '3') || (current == '4') || (current == '5') || (current == '6') || (current == '7') || (current == '8') || (current == '9') || (current == '10'))
+    		Numbers_first[current - '0'] = 1;
+    }
+    fclose(f1);
+    f2 = fopen("Graph2.txt", "r");
+    while ((current = fgetc(f2)) != EOF)
+    {
+    	if ((current == '1') || (current == '2') || (current == '3') || (current == '4') || (current == '5') || (current == '6') || (current == '7') || (current == '8') || (current == '9') || (current == '10'))
+    		Numbers_second[current - '0'] = 1;
+    }
+    fclose(f2);
     int m1[MAX_NUMBER_OF_POINT][MAX_NUMBER_OF_POINT];
     int m2[MAX_NUMBER_OF_POINT][MAX_NUMBER_OF_POINT];
     int buffer[MAX_NUMBER_OF_POINT][MAX_NUMBER_OF_POINT];
@@ -130,6 +133,8 @@ int main() {
     //	}	
     //printf("\n\n");
 
+
+
     //for (i = 1; i < MAX_NUMBER_OF_POINT; i++)
     //{
     //	for (j = 1; j < MAX_NUMBER_OF_POINT; j++)
@@ -160,17 +165,15 @@ int main() {
         exit(1);
     }
     fprintf(Result_graph_file, "digraph D{\n");
-    //for (i = 1; i < MAX_NUMBER_OF_POINT; i++)
-    //	{
-    //	for (j = 1; j < MAX_NUMBER_OF_POINT; j++)
-    //		{
-    //		if (buffer[i][j] == 1)
-    //			{
-    //			fprintf(Result_graph_file,"%d;\n",i);
-    //			fprintf(Result_graph_file, "%d;\n", i);
-    //			}
-    //		}
-    //	}
+    
+
+    for (i = 0; i < MAX_NUMBER_OF_POINT; i++)
+    {
+        if ((Numbers_first[i] == 1) && (Numbers_second[i] == 1))
+        {
+            fprintf(Result_graph_file, "%d\n",i);
+        }
+    }
 
     for (i = 1; i < MAX_NUMBER_OF_POINT; i++) {
         for (j = 1; j < MAX_NUMBER_OF_POINT; j++) {
@@ -179,6 +182,7 @@ int main() {
             }
         }
     }
+
     fprintf(Result_graph_file, "}");
     fclose(Result_graph_file);
     system("dot C:\\Users\\Professional\\Desktop\\Projects\\Homework_3\\Result_graph_file.txt -Tbmp -o Result_graph_file.bmp");
