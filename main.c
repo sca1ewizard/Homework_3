@@ -24,13 +24,6 @@ int main() {
     int Numbers_first[MAX_NUMBER_OF_POINT];
     int Numbers_second[MAX_NUMBER_OF_POINT];
     int mass_all[MAX_NUMBER_OF_POINT];
-    //int Numbers_first[MAX_NUMBER_OF_POINT];
-    //int Numbers_second[MAX_NUMBER_OF_POINT];
-    //for (i = 0; i < MAX_NUMBER_OF_POINT; i++)
-    //{
-    //	Numbers_first[i] = 0;
-    //	Numbers_second[i] = 0;
-    //}
     //------------------------------------------------------------------------//
 
     FILE* f1;
@@ -123,27 +116,6 @@ int main() {
     fclose(f1);
 
     //------------------------------------------------------------------------//
-    //for (i = 1; i < MAX_NUMBER_OF_POINT; i++)
-    //	{
-    //	for (j = 1; j < MAX_NUMBER_OF_POINT; j++)
-    //		{
-    //		printf("%3d",m1[i][j]);
-    //		}
-    //	printf("\n");
-    //	}	
-    //printf("\n\n");
-
-
-
-    //for (i = 1; i < MAX_NUMBER_OF_POINT; i++)
-    //{
-    //	for (j = 1; j < MAX_NUMBER_OF_POINT; j++)
-    //	{
-    //		printf("%3d", m2[i][j]);
-    //	}
-    //	printf("\n");
-    //}
-
     for (i = 1; i < MAX_NUMBER_OF_POINT; i++) {
         for (j = 1; j < MAX_NUMBER_OF_POINT; j++) {
             if ((m1[i][j] == 1) && (m2[i][j] == 1))
@@ -151,14 +123,6 @@ int main() {
         }
     }
 
-    //for (i = 1; i < MAX_NUMBER_OF_POINT; i++)
-    //{
-    //	for (j = 1; j < MAX_NUMBER_OF_POINT; j++)
-    //	{
-    //		printf("%2d", buffer[i][j]);
-    //	}
-    //	printf("\n");
-    //}
     FILE* Result_graph_file;
     if ((Result_graph_file = fopen("Result_graph_file.txt", "w")) == NULL) {
         printf("Cannot open Result_graph_file.\n");
